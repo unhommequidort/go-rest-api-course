@@ -1,4 +1,10 @@
 =========================================
-Go Rest API Course by 24FEE
+Go Rest API
 
-https://www.youtube.com/watch?v=sr3Akk0N8-o
+## Tools Needed
+
+- go version
+- git version
+- docker -v
+- docker-compose -v
+- task
