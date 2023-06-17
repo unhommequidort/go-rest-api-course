@@ -2,7 +2,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 
 	"github.com/unhommequidort/go-rest-api-course/internal/db"
@@ -20,8 +19,8 @@ func Run() error {
 		return err
 	}
 
-	if err := db.Ping(context.Background()); err != nil {
-		fmt.Println("error pinging database: %w", err)
+	if err := db.MigrateDB(); err != nil {
+		fmt.Println("error migrating database: %w", err)
 		return err
 	}
 	fmt.Println("database connection successful")
