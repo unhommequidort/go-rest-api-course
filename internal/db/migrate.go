@@ -1,6 +1,7 @@
 package db
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/golang-migrate/migrate/v4"
@@ -29,11 +30,9 @@ func (d *Database) MigrateDB() error {
 	}
 
 	if err := m.Up(); err != nil {
-		if err == migrate.ErrNoChange {
-			fmt.Println("no migration was applied")
-			return nil
+		if !errors.Is(err, migrate.ErrNoChange) {
+			return fmt.Errorf("error applying migration: %w", err)
 		}
-		return fmt.Errorf("error applying migration: %w", err)
 	}
 
 	// error := m.Force(1) //1 is migrations version number, you may use your latest version

@@ -2,8 +2,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
+	"github.com/unhommequidort/go-rest-api-course/internal/comment"
 	"github.com/unhommequidort/go-rest-api-course/internal/db"
 )
 
@@ -23,7 +25,9 @@ func Run() error {
 		fmt.Println("error migrating database: %w", err)
 		return err
 	}
-	fmt.Println("database connection successful")
+
+	cmtService := comment.NewService(db)
+	fmt.Println(cmtService.GetComment(context.Background(), "1ce125f4-b827-4ef9-98df-6aa1fbb9bc60"))
 
 	return nil
 }
